@@ -1,7 +1,5 @@
 # Demo Files for Todo-App
 
-
-
 ## Instructions for running
 
 ### Running the server
@@ -14,7 +12,10 @@ node index.js
 
 ### Running the app
 
-You should have `expo-cli` installed.
+Firstly, replace the IP address in `app/components/notes.js` with your laptop's IP address.
+
+Also, you should have `expo-cli` installed.
+
 ```
 cd app
 yarn

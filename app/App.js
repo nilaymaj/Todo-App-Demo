@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Notes from './components/notes';
+import TodoNotes from './components/notes';
 import * as Font from 'expo-font';
 import Roboto from 'native-base/Fonts/Roboto.ttf';
 import RobotoMedium from 'native-base/Fonts/Roboto_medium.ttf';
 import { AppLoading } from 'expo';
-import { Root, Container } from 'native-base';
-import { StyleSheet, Text, View } from 'react-native';
+import { Root, Container, Header, Left, Body, Right, Title } from 'native-base';
 
+// Load the fonts for app
 loadFonts = () => {
   return Font.loadAsync({
     Roboto: Roboto,
@@ -15,20 +15,33 @@ loadFonts = () => {
 };
 
 class App extends Component {
-  state = { fontsLoaded: false };
+  state = {
+    appLoaded: false // Load fonts before rendering the main app
+  };
+
   render() {
-    if (!this.state.fontLoaded) {
+    if (!this.state.appLoaded)
       return (
+        // The fonts aren't loaded (app just started), so render loading screen
         <AppLoading
-          startAsync={() => loadFonts()}
-          onFinish={() => this.setState({ fontsLoaded: true })}
+          startAsync={() => loadFonts()} // Start loading fonts when rendered
+          onFinish={() => this.setState({ appLoaded: true })} // Update the state when loaded
         ></AppLoading>
       );
-    } else
+    else
       return (
+        // The fonts are loaded.
         <Root>
+          <Header>
+            <Left />
+            <Body>
+              <Title>ToDo App</Title>
+            </Body>
+            <Right />
+          </Header>
+
           <Container>
-            <Notes></Notes>
+            <TodoNotes></TodoNotes>
           </Container>
         </Root>
       );
@@ -36,12 +49,3 @@ class App extends Component {
 }
 
 export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-});

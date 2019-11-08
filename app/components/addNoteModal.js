@@ -1,19 +1,21 @@
-import React, { Component } from 'react';
-import { Modal, View } from 'react-native';
-import { Content, Input, Textarea } from 'native-base';
+import React from 'react';
+import { Modal } from 'react-native';
+import { Input, Textarea, Button, Text, Content } from 'native-base';
 
+// This is a functional component
+// Can't use state = {...} like in class components
 const AddNoteModal = props => {
+  // Use setState to emulate state in functional components
+  // const [property, setProperty] = React.useState(<default value of property>)
   const [title, setTitle] = React.useState('');
   const [body, setBody] = React.useState('');
 
   return (
-    <Modal
+    <Modal // provided by React-Native
       animationType="slide"
       transparent={false}
-      visible={this.state.modalVisible}
-      onRequestClose={() => {
-        Alert.alert('Modal has been closed.');
-      }}
+      visible={props.active}
+      onRequestClose={() => props.switch()}
     >
       <Content>
         <Input
