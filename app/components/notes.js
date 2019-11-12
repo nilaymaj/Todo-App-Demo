@@ -21,7 +21,7 @@ class TodoNotes extends Component {
   // Fetch notes from backend and update state
   fetchNotes = () => {
     axios // Library for sending API requests
-      .get('http://172.17.72.104:8000/view')
+      .get('http://172.17.72.104:8000/notes/view')
       .then(res => {
         this.setState({ notes: res.data });
       })
@@ -33,7 +33,7 @@ class TodoNotes extends Component {
     console.log(id);
     axios({
       method: 'POST',
-      url: 'http://172.17.72.104:8000/delete',
+      url: 'http://172.17.72.104:8000/notes/delete',
       data: { id: id }
     })
       .then(() => this.fetchNotes()) // Fetch the new notes when delete request is successful
@@ -45,7 +45,7 @@ class TodoNotes extends Component {
     console.log(title);
     console.log(body);
     axios
-      .post('http://172.17.72.104:8000/add', { title: title, body: body })
+      .post('http://172.17.72.104:8000/notes/add', { title: title, body: body })
       .then(res => {
         this.fetchNotes();
         this.setState({ modalOpen: false });
