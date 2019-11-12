@@ -10,7 +10,7 @@ app.use(bodyParser());
 app.use('/users', require('./routes/users.js'));
 app.use('/notes', require('./routes/notes.js'));
 
-const DB_URL = 'mongodb://localhost:27017';
+const DB_URL = 'mongodb://localhost:27017/todo-app';
 const PORT = 8000;
 
 mongoose
